@@ -1,0 +1,45 @@
+body {
+  font-family: BlinkMacSystemFont;
+}
+.text-cursive {
+  font-family: "Satisfy", cursive;
+}
+.text-justify {
+  text-align: justify;
+}
+.banner-clr {
+  background: linear-gradient(to right, #0000ff, #eeff00, #ff9100);
+}
+.img-height1 {
+  height: 410px;
+  width: 100%;
+  transition: transform 0.5s;
+}
+.img-height2 {
+  height: 200px;
+  width: 100%;
+  margin-bottom: 10px;
+  transition: transform 0.5s;
+}
+.img-height1:hover {
+  transform: scale(0.5);
+}
+.img-height2:hover {
+  transform: scale(0.5);
+}
+
+.imgzoomin {
+  width: 300px;
+  height: 420px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.imgzoomin img {
+  width: 100%;
+  transition: 0.5s all ease-in-out;
+}
+
+.imgzoomin:hover img {
+  transform: scale(1.1);
+}

@@ -1,0 +1,78 @@
+{% extends 'headerfooter.html' %}
+{% load static %}
+{% block container %}
+    <!-- add student data -->
+    <div class="container-fluid">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6">
+            <h1 class="alert alert-dark shadow-lg my-3 text-center text-cursive fw-bold">
+              Add Student Ddetails
+            </h1>
+            <form
+              action=""
+              method="post"
+              class="border shadow-lg p-4"
+              enctype="multipart/form-data"
+            >
+              {% csrf_token %} {% for fm in form %}
+              <div class="form-group">
+                {{fm.label_tag}} 
+                {{fm}}
+                <small class="text-danger my-3 font-weight-bold">{{fm.errors|striptags}}</small>
+              </div>
+              {% endfor %}
+              <div class="d-grid">
+                <input type="submit" class="btn btn-primary my-3" value="Submit" />
+              </div>
+            </form>
+            {% if messages %}
+            {% for message in messages %}
+              <p {% if message.tags %} class="alert alert-{{message.tags}}" {% endif %}>{{message}}</p>
+            {% endfor %}
+            {% endif %}          
+          </div>
+          <div class="col-sm-6">
+            <h1 class="alert alert-dark shadow-lg my-3 text-center text-cursive fw-bold">Students Details List</h1>
+            <table class="table text-center">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">NAME</th>
+                  <th scope="col">ROLL NUMBER</th>
+                  <th scope="col">EMAIL</th>
+                  <th scope="col">MOBILE</th>
+                  <th scope="col">IMAGE</th>
+                  <th scope="col">ACTION</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for dat in data %}
+                <tr>
+                  <th scope="row">{{dat.id}}</th>
+                  <td>{{dat.stu_name}}</td>
+                  <td>{{dat.stu_roll}}</td>
+                  <td>{{dat.stu_email}}</td>
+                  <td>{{dat.stu_mobile}}</td>
+                  <td><img src="{{dat.stu_image.url}}" height="80" width="80" alt="{{dat.stu_image}}"></td>
+                  <td >
+                    <div class="btn-group my-auto">
+                      <a href="{% url 'deletestudent' dat.id %}" class=" btn btn-danger text-center col" data-bs-toggle="tooltip" data-bs-placement="bottom" title="delete user">
+                        <i class="fas fa-user-minus"></i>
+                      </a>
+                      <a href="{% url 'updatestudent' dat.id %}" class="btn btn-warning text-center col" data-bs-toggle="tooltip" data-bs-placement="bottom" title="edit user">
+                        <i class="fas fa-pencil-alt"></i>
+                      </a>
+                    </div>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock container %}
